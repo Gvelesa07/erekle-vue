@@ -1,7 +1,7 @@
 <script>
 export default{
     props:{items: Array,},
-    data(){
+    data(){ 
         return {
             menulist : true,
         }
@@ -10,7 +10,7 @@ export default{
 </script>
 
 <template>
-    <div class="nav">
+    <div class="navv">
         <ul>
             <li v-for="item in items" :key="item.id" >
                 <button @click="menulist = !menulist">{{item.name}}</button>
@@ -18,7 +18,7 @@ export default{
         </ul>
     </div>
     
-    <div id="app">
+    <div id="div2">
   
   <p v-if="!menulist" v-for="item in items" :key="item.index">{{item.description}}</p>
   
