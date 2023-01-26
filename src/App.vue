@@ -1,27 +1,43 @@
 <script>
+import Listmenu from "./List.vue"
+
 export default{
-    data(){
-        return{
-            menuList: ['Home', 'Products', 'About Us', 'Contact']
-        }
-    },
+  components: {
+    Listmenu
+  },
+  data(){
+    return {
+      dataItem: [
+                {
+                  id: 1,
+                  name:"HOME",
+                  url:"https://www.google.com/",
+                  description: "homepage"
+                },
+                {
+                  id: 2,
+                  name:"CONTACT",
+                  url:"https://www.google.com/",
+                  description: "contact"
+                },
+                {
+                  id: 3,
+                  name:"ABOUT US",
+                  url:"https://yandex.com/",
+                  description: "about"
+                },
+                {
+                  id: 4,
+                  name:"INFO",
+                  url:"https://duckduckgo.com/",
+                  description: "information"
+                },
+              ]
+    }
+  }
 }
 </script>
-<template>
-  <div class="div1">
-      <ul>
-          <li v-for="item in menuList" :key="item.index" >{{item}}</li>
-      </ul>
-  </div>
-  </template>
-  <style scoped>
-  div {
-      border: rgb(242, 242, 242) 1px solid;
-      background-color: rgb(0, 0, 0);
-  }
-  ul {
-      display:flex;
-      gap: 100px;
-  }
 
-  </style>
+<template>
+  <Listmenu :items="dataItem"></Listmenu>
+</template>
