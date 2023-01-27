@@ -1,57 +1,37 @@
 <script>
-
+let id = 0
 export default {
   data() {
     return {
-      width: 20,
-      height: 30,
-      simagle: null,
-      show: false,
-      color:null
-      
+      newTodo: '',
+      todos: [
+        { id: id++, text: 'Todolist1' },
+        { id: id++, text: 'Todolist2' },
+        { id: id++, text: 'Todolist3' }
+      ]
     }
   },
-  computed: {
-    calculateSpace(){
-      return this.width * this.height
+  methods: {
+    addTodo() {
+      this.todos.push({ id: id++, text: this.newTodo })
+      this.newTodo = ''
     },
-    calculateMoculoba(){
-      return this.calculateSpace * this.simagle
+    removeTodo(todo) {
+      this.todos = this.todos.filter((t) => t !== todo)
     }
-  
   }
 }
-
 </script>
 
 <template>
-  <div>
-    <form>
-      <label>სიგრძე</label><br />
-      <input v-model="width" /><br />
-
-      <label>სიგანე</label><br />
-      <input v-model="height" /><br />
-      
-      <label>სიმაღლე</label><br />
-      <input v-model="simagle" /><br />
-    </form>
-    <br />
-    <button @click.prevent="show = !show">
-      <span v-if="!show">Show</span>
-      <span v-if="show">Hide</span>
-    </button>
-    <p v-if="show">ფართობი: {{ calculateSpace }}</p>
-    <p v-if="show">მოცულობა: {{ calculateMoculoba }}</p>
-    <input type="color" v-model="color">
-  </div>
-  <div v-bind:style="{ width: width + 'px' , height: height + 'px',backgroundColor:color}"></div>
-   
-  
+  <form @submit.prevent="addTodo">
+    <input v-model="newTodo">
+    <button>Add Todo</button>    
+  </form>
+  <ul>
+    <li v-for="todo in todos" :key="todo.id">
+      {{ todo.text }}
+      <button @click="removeTodo(todo)">remove</button>
+    </li>
+  </ul>
 </template>
-<style>
-.newdiv{
-  border: 1px solid rgba(255, 0, 217, 0.626);
-
-}
-</style>
