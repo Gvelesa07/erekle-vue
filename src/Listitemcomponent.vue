@@ -2,8 +2,8 @@
 export default {
     props: {
         itemData: { type:Object, required:true },
-        renderCheckbox: { type:Boolean, required:true},
-        renderDeleteBtn: {type:Boolean, required:true}
+        renderCheckbox: { type:Boolean, required:false},
+        renderDeleteBtn: {type:Boolean, required:false}
         
     },
     methods: {
