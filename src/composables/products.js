@@ -1,37 +1,44 @@
-import {ref,onMounted} from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-export default function useProducts(){
-    const range =[5,10,15,20]
-    const url = 'http://items.magischer.de/api/products'
-    const limits = [ 5, 10, 15, 20 ]
-    const langs = [ 'en', 'ge']
-    const limit = ref(limits[0])
-    const res = ref(null)
-    const lang = ref(langs[0])
+export default function products() {
+  setup(_,context){
+  const range = [ 5,10,15],
+  const limit = [5],
+  const langs = ['ge', 'en'],
+  const apiUrl ="http://items.magischer.de/api/products",
+  const products =[],
+  const res = null, 
+  },
+  
+methods:{
+  getDataFromApiUrl(url = this.apiUrl){ axios.get(url,  { params: { limit: this.limit, lang: this.lang } })
+    .then((response) => {this.res = response.data
+    this.products = response.data.data })
+  },
+  nextPage(){
+    this.getDataFromApiUrl(this.res?.next_page_url)
+  },
+  prevPage(){
+    this.getDataFromApiUrl(this.res?.prev_page_url)
+  },
+  firstpage(){
+    this.getDataFromApiUrl(this.res?.first_page_url)
+  },
+  lastpage(){
+    this.getDataFromApiUrl(this.res?.last_page_url)
+  },
+  changelimit(e){
+    this.limit = e.target.value
+    this.getDataFromApiUrl()
+  },
+  changelang(e){
+    this.lang = e.target.value
+    this.getDataFromApiUrl()
+  },
+}
+ mounted() {
+   this.getDataFromApiUrl()
+ }
+}
 
-   function getProducts(url= url){
-        axios.get(url,{
-            params: {
-                limit:limit.value,
-                lang:limit.value,
-            }
-        }).then((response) => {
-            products.value = response.data.data
-            res.value = response.data
-        })}
-    function showProduct(id){
-        axios.get(url +'/' + id).then(response => product.value =response.data)
-    }
-    onMounted(function(){
-        getProducts()
-    })
-    return {
-     myProducts,
-     res,
-     getProducts,
-     products,
-     url,
-
-    }
-  }
