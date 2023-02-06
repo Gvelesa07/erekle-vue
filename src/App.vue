@@ -1,7 +1,7 @@
 <script setup>
 import ProductsList from './components/ProductsList.vue'
 import Cart from './components/Cart.vue'
-import Product from './Product.vue'
+import Product from './components/Product.vue'
 const pageTitle = "State Problem"
 </script>
 
