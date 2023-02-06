@@ -1,44 +1,58 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-export default function products() {
-  setup(_,context){
-  const range = [ 5,10,15],
-  const limit = [5],
-  const langs = ['ge', 'en'],
-  const apiUrl ="http://items.magischer.de/api/products",
-  const products =[],
-  const res = null, 
-  },
-  
-methods:{
-  getDataFromApiUrl(url = this.apiUrl){ axios.get(url,  { params: { limit: this.limit, lang: this.lang } })
-    .then((response) => {this.res = response.data
-    this.products = response.data.data })
-  },
-  nextPage(){
-    this.getDataFromApiUrl(this.res?.next_page_url)
-  },
-  prevPage(){
-    this.getDataFromApiUrl(this.res?.prev_page_url)
-  },
-  firstpage(){
-    this.getDataFromApiUrl(this.res?.first_page_url)
-  },
-  lastpage(){
-    this.getDataFromApiUrl(this.res?.last_page_url)
-  },
-  changelimit(e){
-    this.limit = e.target.value
-    this.getDataFromApiUrl()
-  },
-  changelang(e){
-    this.lang = e.target.value
-    this.getDataFromApiUrl()
-  },
-}
- mounted() {
-   this.getDataFromApiUrl()
- }
-}
+export default function useProducts(){
 
+    const product = ref(null)
+    const url = 'http://items.magischer.de/api/products'
+    const limits = [ 5, 10, 15, 20, 50 ]
+    const langs = [ 'en', 'ge' ]
+    const limit = ref(limits[0])
+    const lang = ref(langs[0])
+    const products = ref([])
+    const meta = ref()
+
+    function getProducts(baseUrl = url){
+        axios.get(baseUrl, {
+            params: {
+                limit: limit.value,
+                lang: lang.value,
+            }
+        }).then((response) => {
+            products.value = response.data.data
+            meta.value = response.data
+        })
+    }
+
+    function createProduct(){
+        // ...
+    }
+
+    function updateProduct(){
+        // ...
+    }
+
+    function deleteProduct(){
+        // ...
+    }
+
+    function showProduct(id){
+        axios.get(url + '/' + id).then(response => product.value = response.data)
+    }
+
+    onMounted(function() {
+        getProducts()
+    })
+
+    return {
+        meta,
+        products,
+        product,
+        getProducts,
+        createProduct,
+        updateProduct,
+        deleteProduct,
+        showProduct,
+    }
+    
+}
