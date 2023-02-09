@@ -5,15 +5,14 @@ import { useStore } from 'vuex'
 
 const store = useStore()
 
-const title = store.getters.getCartObject.name
-const data = store.getters.getCartObject.data
-const action = store.getters.getCartObject.action
+const title = store.getters.getProductsObject.name
+const productsData = store.getters.getProductsObject.data
+const action = store.getters.getProductsObject.action
 
 </script>
-
 <template>
     <div class="w-full">
         <ListTitle :title="title" />
-        <ULList :data="data" :action="action"/>
+        <ULList :data="productsData" :action="action" />
     </div>
 </template>

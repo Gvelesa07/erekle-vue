@@ -1,12 +1,13 @@
 import { createStore } from 'vuex'
-import mutations from './mutations'
-import getters from './getters'
-import actions from './actions'
-import state from './state'
+import mainPlugin from './plugins/mainPlugin'
 
-export default createStore({
-    state,
-    getters,
-    mutations,
-    actions
+const store = createStore({
+    state(){
+        return {
+            anotherData: []
+        }
+    },
+    plugins: [ mainPlugin ],
 })
+
+export default store

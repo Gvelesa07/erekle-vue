@@ -1,18 +1,12 @@
 <script setup>
-import ProductsList from './components/ProductsList.vue'
-import Cart from './components/Cart.vue'
-import Product from './components/Product.vue'
+import navigationmenu from './components/menus/navigationmenu.vue';
+
 </script>
+
 <template>
-  <div class="container">
-    <div class="flex flex-row space-x-4">
-      <ProductsList />
-      <Cart />
-      <Product />
-    </div>
+  <div class="container flex flex-col mx-auto space-y-4">
+      <navigationmenu />
+      <RouterView />
   </div>
+
 </template>
-
-<styles>
-
-</styles>
