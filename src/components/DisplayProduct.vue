@@ -1,12 +1,12 @@
 <script setup>
-import { Computed } from 'vuex'
-import { UseRoute} from 'vue-router'
-import { UseStore } from 'vuex';
+import { computed } from 'vue'
+import { useRoute} from 'vue-router'
+import { useStore } from 'vuex';
 
-const route = UseRoute()
-const store = UseStore()
+const route = useRoute()
+const store = useStore()
 
-const product = Computed (() => {
+const product = computed (() => {
     store.commit('GET_PRODUCT_BY_ID', route.params.id)
     return store.getters.getActiveProduct
 }

@@ -13,7 +13,7 @@ defineProps({
             <div class="flex flex-row space-x-6"                                 >
             <span>{{ item.name }}</span>
             <ActionButtons :tocart="action" :id="item.id" />
-            <Routerlink :to="{name: 'product', params: { id:1 } }"> Item Info </Routerlink>
+            <RouterLink :to="{name: 'Product', params: { id: item.id } }"> Item Info </RouterLink>
             </div>
         </li>
     </ul>
