@@ -1,12 +1,12 @@
 <script setup>
-import { Computed } from 'vue'
+import { Computed } from 'vuex'
 import { UseRoute} from 'vue-router'
-import { useStore } from 'vuex';
+import { UseStore } from 'vuex';
 
 const route = UseRoute()
-const store = useStore()
+const store = UseStore()
 
-const product = computed (() => {
+const product = Computed (() => {
     store.commit('GET_PRODUCT_BY_ID', route.params.id)
     return store.getters.getActiveProduct
 }
@@ -16,6 +16,6 @@ const product = computed (() => {
 
 <template>
     <div>
-        Information abouts Item {{ product }}
+        Information about Item {{ product }}
     </div>
 </template>
