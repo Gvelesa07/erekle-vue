@@ -5,19 +5,20 @@ import getters from "./getters"
 const productsModule = {
     state() {
         return {
+            activeProduct: null,
             products: {
-                name: "პროდუქტები",
+                name: "Products",
                 action: true,
                 data: [
-                    { id: 1, name: "Product 1", price: 100 },
-                    { id: 2, name: "Product 2", price: 200 },
-                    { id: 3, name: "Product 3", price: 300 },
-                    { id: 4, name: "Product 4", price: 400 },
-                    { id: 5, name: "Product 5", price: 500 },
+                    { id: 1, name: "Item 1", price: 100, description: 'text about prices'  },
+                    { id: 2, name: "Item 2", price: 200, description: 'text about prices'  },
+                    { id: 3, name: "Item 3", price: 300, description: 'text about prices'  },
+                    { id: 4, name: "Item 4", price: 400, description: 'text about prices'  },
+                    { id: 5, name: "Item 5", price: 500, description: 'text about prices'  },
                 ]
             },
             cart: {
-                name: "კალათა",
+                name: "Cart",
                 action: false,
                 data: []
             }

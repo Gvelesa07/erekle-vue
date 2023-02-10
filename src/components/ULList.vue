@@ -9,9 +9,12 @@ defineProps({
 
 <template>
     <ul class="list-none md:list-disc space-y-2 items-center">
-        <li v-for="item in data" :key="item.index" class="flex flex-row space-x-4">
-            <span>{{ item.name }} - {{ item.price }}</span>
+        <li v-for="item in data" :key="item.index" >
+            <div class="flex flex-row space-x-6"                                 >
+            <span>{{ item.name }}</span>
             <ActionButtons :tocart="action" :id="item.id" />
+            <Routerlink :to="{name: 'product', params: { id:1 } }"> Item Info </Routerlink>
+            </div>
         </li>
     </ul>
 </template>
