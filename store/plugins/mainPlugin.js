@@ -5,11 +5,6 @@ export default function mainPlugin(store){
     
     store.subscribe((mutation, state) => {
 
-        console.log(mutation, state)
-      // called after every mutation.
-      // The mutation comes in the format of `{ type, payload }`.
-    })
-
     store.subscribeAction({
         before: (action, state) => {
           console.log(`before action ${action.type}`)
@@ -21,5 +16,5 @@ export default function mainPlugin(store){
 
     store.registerModule('productsModule', productsModule)
     store.registerModule('buttonsModule', buttonsModule)
-    // store.unregisterModule('buttonsModule')
+   
 }
